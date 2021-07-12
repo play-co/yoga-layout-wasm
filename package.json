@@ -48,6 +48,6 @@
     "rollup-plugin-terser": "^6.1.0"
   },
   "dependencies": {
-    "@types/yoga-layout": "^1.9.2"
+    "@types/yoga-layout": "^1.9.4"
   }
 }
