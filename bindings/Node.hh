@@ -22,7 +22,7 @@ struct MeasureCallbackWrapper : public emscripten::wrapper<MeasureCallback>
   EMSCRIPTEN_WRAPPER(MeasureCallbackWrapper);
   YGSize measure(float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode)
   {
-    return call<YGSize>("measure", width, widthMode, height, heightMode);
+    return call<YGSize>("measure", width, (int)widthMode, height, (int)heightMode);
   }
 };
 

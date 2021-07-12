@@ -7,7 +7,7 @@ import pkg from './package.json';
 
 export default [
   {
-    input: 'yoga/javascript/sources/entry-common.js',
+    input: 'src/entry-common.js',
     output: [
       {
         file: 'build/entry.js',
