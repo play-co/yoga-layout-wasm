@@ -3,9 +3,15 @@ CC=emcc
 all: clean dir wasm asm
 
 wasm:
-	$(CC) yoga/yoga/*.cpp bindings/*.cc \
-		--bind -Os --memory-init-file 0 --llvm-lto 1 \
+	$(CC) yoga/yoga/*.cpp yoga/yoga/*/*.cpp bindings/*.cc \
+		--bind -O3 --memory-init-file 0 --closure 1 --llvm-lto 1 \
 		-Iyoga \
+		-s BINARYEN=1 \
+		-s EXPORT_ES6 \
+		-s "BINARYEN_METHOD='native-wasm'" \
+		-s EXPORTED_RUNTIME_METHODS=[] \
+		-s NO_FILESYSTEM=1 \
+  	-s SINGLE_FILE=1 \
 		-s WASM=1 \
 		-s WASM_ASYNC_COMPILATION=1 \
 		-s DISABLE_EXCEPTION_CATCHING=1 \
@@ -19,9 +25,14 @@ wasm:
 		-o build/yoga.mjs
 
 asm:
-	$(CC) yoga/yoga/*.cpp bindings/*.cc \
-		--bind -Os --memory-init-file 0 --llvm-lto 1 \
+	$(CC) yoga/yoga/*.cpp yoga/yoga/*/*.cpp bindings/*.cc \
+		--bind -O3 --memory-init-file 0 --closure 1 --llvm-lto 1 \
 		-Iyoga \
+		-s BINARYEN=1 \
+		-s EXPORT_ES6 \
+		-s "BINARYEN_METHOD='native-wasm'" \
+		-s EXPORTED_RUNTIME_METHODS=[] \
+		-s NO_FILESYSTEM=1 \
 		-s WASM=0 \
 		-s ENVIRONMENT='shell,web' \
 		-s WASM_ASYNC_COMPILATION=1 \
