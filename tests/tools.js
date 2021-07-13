@@ -69,28 +69,17 @@ target.getMeasureCounterMin = function(Yoga) {
   });
 };
 
-// exports.mochaGlobalSetup = async function() {
-//   const entries = {
-//     wasm: '../dist/index',
-//     asm: '../asm'
-//   };
-
-//   const Yoga = await require(entries[process.env.TEST_ENTRY]).init();
-//   console.warn('YOGA1', Yoga);
-
-//   target.Yoga = Yoga;
-// };
-
 exports.mochaHooks = {
   beforeAll(done) {
     console.warn('BEFORE ALL');
 
     const entries = {
-      wasm: '../dist/index',
-      asm: '../asm'
+      wasm: './lib/entry-wasm',
+      asm: './lib/entry-asm'
     };
   
     require(entries[process.env.TEST_ENTRY])
+      .default
       .init()
       .then(Yoga => {
         target.Yoga = Yoga;

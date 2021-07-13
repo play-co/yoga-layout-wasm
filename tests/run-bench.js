@@ -69,8 +69,8 @@ function main(modules) {
 }
 
 Promise.all([
-  require('../dist/index').init(), // wasm
-  require('../asm').init() // asm
+  require('./lib/entry-wasm').default.init(), // wasm
+  require('./lib/entry-asm').default.init() // asm
 ])
 .then(modules => {
   main({

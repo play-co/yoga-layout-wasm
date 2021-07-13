@@ -1,20 +1,21 @@
 {
   "name": "@play-co/yoga-layout-wasm",
-  "version": "1.18.1",
+  "version": "1.18.2",
   "description": "yoga-layout webassembly module",
-  "main": "dist/index.js",
-  "types": "index.d.ts",
-  "typings": "index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && rollup -c rollup.config.js",
-    "build:all": "rm -rf dist build && make && rollup -c rollup.config.js",
+    "build": "make && tsc && cp build/* lib",
+    "build:tests": "make && tsc -p tsconfig.tests.json && cp build/* tests/lib",
     "test:wasm": "TEST_ENTRY=wasm time mocha --expose-gc -r tests/tools.js tests/Facebook.Yoga/**/*.js",
     "test:asm": "TEST_ENTRY=asm time mocha --expose-gc -r tests/tools.js tests/Facebook.Yoga/**/*.js",
-    "test": "npm run build:all && npm run test:wasm && npm run test:asm",
-    "benchmark": "node tests/run-bench $(find tests/Benchmarks -name '*.js')",
-    "example:node": "node ./examples/node/index.js",
-    "example:node:asm": "node ./examples/node/asm.js",
-    "example:html": "open http://127.0.0.1:8080/examples/html/ && http-server"
+    "test": "npm run build:tests && npm run test:wasm && npm run test:asm",
+    "benchmark": "node tests/run-bench.js $(find tests/Benchmarks -name '*.js')",
+    "lint:fix": "eslint src test/src --fix",
+    "lint": "eslint src test/src",
+    "format": "prettier --write \"test/src/**/*.{js,ts}\" \"src/**/*.{js,ts}\"",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -32,28 +33,14 @@
     "url": "https://github.com/play-co/yoga-layout-wasm/issues"
   },
   "homepage": "https://github.com/play-co/yoga-layout-wasm#readme",
-  "files": [
-    "dist",
-    "package.json",
-    "index.d.ts",
-    "asm.d.ts",
-    "asm.js",
-    "LICENSE"
-  ],
   "devDependencies": {
-    "@babel/core": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
-    "@rollup/plugin-babel": "^5.0.2",
-    "@rollup/plugin-commonjs": "^12.0.0",
-    "@rollup/plugin-sucrase": "^3.0.0",
-    "http-server": "^0.12.3",
+    "@play-co/eslint-config": "1.4.0",
+    "@types/node": "^16.3.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "mocha": "^9.0.2",
-    "rollup": "^2.0.0",
-    "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-terser": "^6.1.0"
-  },
-  "dependencies": {
-    "@types/yoga-layout": "^1.9.4"
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",

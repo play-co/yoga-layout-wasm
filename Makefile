@@ -2,8 +2,8 @@ CC=emcc
 ARGS=yoga/yoga/*.cpp yoga/yoga/*/*.cpp bindings/*.cc \
 		--bind -O3 --memory-init-file 0 --closure 1 --llvm-lto 1 \
 		-Iyoga \
+		-s ENVIRONMENT="web,webview,worker" \
 		-s BINARYEN=1 \
-		-s EXPORT_ES6 \
 		-s "BINARYEN_METHOD='native-wasm'" \
 		-s EXPORTED_RUNTIME_METHODS=[] \
 		-s NO_FILESYSTEM=1 \
@@ -23,12 +23,12 @@ all: clean dir wasm asm
 wasm:
 	$(CC) $(ARGS) \
 		-s WASM=1 \
-		-o build/yoga.mjs
+		-o build/yoga.bundle.wasm.js
 
 asm:
 	$(CC) $(ARGS) \
 		-s WASM=0 \
-		-o build/yoga.asm.mjs
+		-o build/yoga.bundle.asm.js
 
 clean:
 	rm -rf build 
