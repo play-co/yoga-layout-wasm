@@ -1,4 +1,5 @@
 #include <yoga/Yoga.h>
+#include <yoga/YGConfig.h>
 
 #include "./Config.hh"
 
@@ -26,6 +27,5 @@ void Config::setPointScaleFactor(float pixelsInPoint) {
 }
 
 bool Config::isExperimentalFeatureEnabled(int feature) const {
-  return YGConfigIsExperimentalFeatureEnabled(
-      m_config, static_cast<YGExperimentalFeature>(feature));
+    return m_config->experimentalFeatures[feature];
 }

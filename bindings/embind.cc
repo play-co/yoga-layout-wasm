@@ -14,7 +14,7 @@ EMSCRIPTEN_BINDINGS(Config) {
     .class_function<>("create", &Config::create, allow_raw_pointers())
     .function("setExperimentalFeatureEnabled", &Config::setExperimentalFeatureEnabled)
     .function("setPointScaleFactor", &Config::setPointScaleFactor)
-    // .function("isExperimentalFeatureEnabled", &Config::isExperimentalFeatureEnabled)
+    .function("isExperimentalFeatureEnabled", &Config::isExperimentalFeatureEnabled)
 
   ;
 }
