@@ -1,6 +1,6 @@
 {
   "name": "yoga-layout-wasm",
-  "version": "1.9.3-alpha.7",
+  "version": "1.18.1",
   "description": "yoga-layout webassembly module",
   "main": "dist/index.js",
   "types": "index.d.ts",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pinqy520/yoga-layout-wasm.git"
+    "url": "git+https://github.com/play-co/yoga-layout-wasm.git"
   },
   "keywords": [
     "webassembly",
@@ -29,9 +29,9 @@
   "author": "Huang Qi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pinqy520/yoga-layout-wasm/issues"
+    "url": "https://github.com/play-co/yoga-layout-wasm/issues"
   },
-  "homepage": "https://github.com/pinqy520/yoga-layout-wasm#readme",
+  "homepage": "https://github.com/play-co/yoga-layout-wasm#readme",
   "files": [
     "dist",
     "package.json",
@@ -54,5 +54,9 @@
   },
   "dependencies": {
     "@types/yoga-layout": "^1.9.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
   }
 }

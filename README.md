@@ -95,7 +95,7 @@ module.exports =  {
       .then(mod => mod.default.init())
       .then(test) :
     import('yoga-layout-wasm')
-      .then(mod => mod.default.init(require('yoga-layout-wasm/dist/yoga.wasm')))
+      .then(mod => mod.default.init())
       .then(test);
 ```
 
