@@ -324,6 +324,10 @@ unsigned Node::getChildCount(void) const {
   return YGNodeGetChildCount(m_node);
 }
 
+uintptr_t Node::getID() const {
+  return (uintptr_t)m_node;
+}
+
 Node* Node::getParent(void) {
   auto nodePtr = YGNodeGetParent(m_node);
 
@@ -440,4 +444,14 @@ double Node::getComputedBorder(int edge) const {
 
 double Node::getComputedPadding(int edge) const {
   return YGNodeLayoutGetPadding(m_node, static_cast<YGEdge>(edge));
+}
+
+bool Node::hasNewLayout(void) const
+{
+  return YGNodeGetHasNewLayout(m_node);
+}
+
+void Node::setHasNewLayout(bool hasNewLayout)
+{
+  YGNodeSetHasNewLayout(m_node, hasNewLayout);
 }

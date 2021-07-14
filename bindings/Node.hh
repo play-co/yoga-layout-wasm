@@ -158,6 +158,7 @@ public: // Tree hierarchy mutators
 
 public: // Tree hierarchy inspectors
   unsigned getChildCount(void) const;
+  uintptr_t getID(void) const;
 
   // The following functions cannot be const because they could discard const
   // qualifiers (ex: constNode->getChild(0)->getParent() wouldn't be const)
@@ -189,6 +190,7 @@ public: // Dirtiness accessors
 
 public: // Layout mutators
   void calculateLayout(double width, double height, int direction);
+  void setHasNewLayout(bool hasNewLayout);
 
 public: // Layout inspectors
   double getComputedLeft(void) const;
@@ -205,6 +207,8 @@ public: // Layout inspectors
   double getComputedMargin(int edge) const;
   double getComputedBorder(int edge) const;
   double getComputedPadding(int edge) const;
+
+  bool hasNewLayout(void) const;
 
 public:
   void setIsReferenceBaseline(bool isReferenceBaseline);

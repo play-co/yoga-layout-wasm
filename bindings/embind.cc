@@ -146,6 +146,7 @@ EMSCRIPTEN_BINDINGS(Node) {
     .function("removeChild", &Node::removeChild, allow_raw_pointers())
 
     .function("getChildCount", &Node::getChildCount)
+    .function("getID", &Node::getID)
 
     .function("getParent", &Node::getParent, allow_raw_pointers())
     .function("getChild", &Node::getChild, allow_raw_pointers())
@@ -163,6 +164,7 @@ EMSCRIPTEN_BINDINGS(Node) {
     .function("isDirty", &Node::isDirty)
 
     .function("calculateLayout", &Node::calculateLayout)
+    .function("setHasNewLayout", &Node::setHasNewLayout)
 
     .function("getComputedLeft", &Node::getComputedLeft)
     .function("getComputedRight", &Node::getComputedRight)
@@ -178,5 +180,7 @@ EMSCRIPTEN_BINDINGS(Node) {
     .function("getComputedMargin", &Node::getComputedMargin)
     .function("getComputedBorder", &Node::getComputedBorder)
     .function("getComputedPadding", &Node::getComputedPadding)
+
+    .function("hasNewLayout", &Node::hasNewLayout)
   ;
 }

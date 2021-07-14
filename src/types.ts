@@ -108,6 +108,9 @@ export declare class YogaNode {
   setWidthPercent(width: number): void;
   unsetMeasureFunc(): void;
   unsetDirtiedFunc(): void;
+  hasNewLayout(): boolean;
+  setHasNewLayout(hasNewLayout: boolean): void;
+  getID(): number;
 }
 
 export declare class YogaConfig {
@@ -169,7 +172,6 @@ export type YogaAlign =
 export type YogaFlexDirection =
   | typeof YGEnums.FLEX_DIRECTION_COLUMN
   | typeof YGEnums.FLEX_DIRECTION_COLUMN_REVERSE
-  | typeof YGEnums.FLEX_DIRECTION_COUNT
   | typeof YGEnums.FLEX_DIRECTION_ROW
   | typeof YGEnums.FLEX_DIRECTION_ROW_REVERSE;
 
@@ -217,7 +219,6 @@ export type YogaExperimentalFeature =
   typeof YGEnums.EXPERIMENTAL_FEATURE_WEB_FLEX_BASIS;
 
 export type YogaMeasureMode =
-  | typeof YGEnums.MEASURE_MODE_COUNT
   | typeof YGEnums.MEASURE_MODE_UNDEFINED
   | typeof YGEnums.MEASURE_MODE_EXACTLY
   | typeof YGEnums.MEASURE_MODE_AT_MOST;
