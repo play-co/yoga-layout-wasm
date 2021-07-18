@@ -186,7 +186,7 @@ public: // Dirtied func inspectors
   void callDirtiedFunc(void) const;
 
 public: // Dirtiness accessors
-  void markDirty(void);
+  void markDirty(bool force = false);
   bool isDirty(void) const;
 
 public: // Layout mutators

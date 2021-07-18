@@ -55,7 +55,7 @@ export declare class YogaNode {
   getWidth(): Value;
   insertChild(child: YogaNode, index: number): void;
   isDirty(): boolean;
-  markDirty(): void;
+  markDirty(force: boolean): void;
   removeChild(child: YogaNode): void;
   reset(): void;
   setAlignContent(alignContent: YogaAlign): void;

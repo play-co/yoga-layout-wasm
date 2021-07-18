@@ -1,13 +1,14 @@
 {
   "name": "@play-co/yoga-layout-wasm",
-  "version": "1.18.2-3",
+  "version": "1.18.2-4",
   "description": "yoga-layout webassembly module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "make && tsc && cp build/* lib",
-    "build:tests": "make && tsc -p tsconfig.tests.json && cp build/* tests/lib",
+    "build": "make && tsc && make copy-lib",
+    "build:debug": "make debug && tsc && make copy-lib",
+    "build:tests": "make && tsc -p tsconfig.tests.json && make copy-tests",
     "test:wasm": "TEST_ENTRY=wasm time mocha --expose-gc -r tests/tools.js tests/Facebook.Yoga/**/*.js",
     "test:asm": "TEST_ENTRY=asm time mocha --expose-gc -r tests/tools.js tests/Facebook.Yoga/**/*.js",
     "test": "npm run build:tests && npm run test:wasm && npm run test:asm",

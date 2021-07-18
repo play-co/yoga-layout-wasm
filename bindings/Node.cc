@@ -391,8 +391,12 @@ void Node::callDirtiedFunc(void) const {
   m_dirtiedFunc->dirtied();
 }
 
-void Node::markDirty(void) {
-  YGNodeMarkDirty(m_node);
+void Node::markDirty(bool force) {
+  if (force) {
+    m_node->markDirtyAndPropogate();
+  } else {
+    YGNodeMarkDirty(m_node);
+  }
 }
 
 bool Node::isDirty(void) const {
