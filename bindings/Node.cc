@@ -1,6 +1,7 @@
 #include <algorithm>
 
 #include <yoga/Yoga.h>
+#include <yoga/YGNode.h>
 
 #include "./Node.hh"
 #include "./Layout.hh"
@@ -61,6 +62,14 @@ void Node::reset(void) {
 
 void Node::copyStyle(Node const& other) {
   YGNodeCopyStyle(m_node, other.m_node);
+}
+
+void Node::resetStyle() {
+  auto style = YGStyle();
+  if (style != m_node->getStyle()) {
+    m_node->setStyle(style);
+    m_node->markDirtyAndPropogate();
+  }
 }
 
 void Node::setPositionType(int positionType) {

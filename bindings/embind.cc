@@ -59,6 +59,7 @@ EMSCRIPTEN_BINDINGS(Node) {
     .function("reset", &Node::reset)
 
     .function("copyStyle", &Node::copyStyle)
+    .function("resetStyle", &Node::resetStyle)
 
     .function("setPositionType", &Node::setPositionType)
     .function("setPosition", &Node::setPosition)

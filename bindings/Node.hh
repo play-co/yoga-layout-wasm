@@ -67,6 +67,7 @@ public:
 
 public: // Style setters
   void copyStyle(Node const& other);
+  void resetStyle();
 
   void setPositionType(int positionType);
   void setPosition(int edge, double position);

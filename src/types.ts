@@ -14,6 +14,7 @@ export declare class YogaNode {
     direction?: YogaDirection,
   ): void;
   copyStyle(node: YogaNode): void;
+  resetStyle(): void;
   free(): void;
   freeRecursive(): void;
   getAlignContent(): YogaAlign;
