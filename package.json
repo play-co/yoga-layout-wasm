@@ -1,10 +1,11 @@
 {
   "name": "@play-co/yoga-layout-wasm",
-  "version": "1.18.2-4",
+  "version": "1.18.2-5",
   "description": "yoga-layout webassembly module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "make && tsc && make copy-lib",
     "build:debug": "make debug && tsc && make copy-lib",

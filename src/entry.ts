@@ -1,12 +1,3 @@
-/**
- * SOURCE:
- *  - yoga/javascript/sources/entry-common.js
- *
- * CHANGES:
- *  - fixed `setMeasureFunc()` to properly implement the callback functor;
- *  - fixed `setDirtiedFunc()` to properly implement the callback functor;
- **/
-
 import * as YGEnums from './enums';
 import { Size, Value, Layout } from './common';
 import { YogaConfig, YogaInitModule, YogaNode, YogaStatic } from './types';

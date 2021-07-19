@@ -2,6 +2,9 @@ CC=emcc
 ARGS_DEFAULT=yoga/yoga/*.cpp yoga/yoga/*/*.cpp bindings/*.cc \
 		--bind -O0 --memory-init-file 0 --closure 1 --llvm-lto 1 \
 		-Iyoga \
+		--extern-pre-js templates/external.pre.js.txt \
+		--extern-post-js templates/external.post.js.txt \
+		-s EXPORT_ES6=0 \
 		-s ENVIRONMENT="web,webview,worker" \
 		-s BINARYEN=1 \
 		-s "BINARYEN_METHOD='native-wasm'" \

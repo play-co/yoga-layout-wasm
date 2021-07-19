@@ -1,9 +1,10 @@
+// @ts-expect-error
+import getEmscripten from './yoga.bundle.asm';
 import entry from './entry';
-import { YogaAsm, YogaInitModule } from './types';
-
-const emscripten = require('./yoga.bundle.asm');
+import { YogaInitModule, YogaAsm } from './types';
 
 function init() {
+  const emscripten = getEmscripten();
   const task = emscripten().then((raw: YogaInitModule) =>
     Object.assign(mod, entry(raw)),
   );
