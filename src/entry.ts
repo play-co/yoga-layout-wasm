@@ -20,6 +20,27 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
   const NodeProto = Node.prototype as unknown as Record<string, Function>;
 
   for (const fnName of [
+    'getWidth',
+    'getHeight',
+    'getMaxWidth',
+    'getMaxHeight',
+    'getMinWidth',
+    'getMinHeight',
+    'getMargin',
+    'getPadding',
+    'getPosition',
+  ]) {
+    patch(
+      Node,
+      fnName as any,
+      function (this: YogaNode, original: Function, ...args: any[]) {
+        const data = original.call(this, ...args);
+        return new Value(data.unit.value, data.value);
+      },
+    );
+  }
+
+  for (const fnName of [
     'setPosition',
     'setMargin',
     'setFlexBasis',
@@ -40,11 +61,11 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
     patch(
       Node,
       fnName as any,
-      function (this: YogaNode, _: Function, ...args: any[]) {
+      function (this: YogaNode, _: Function, value: string | number | Value) {
         // We patch all these functions to add support for the following calls:
-        // .setWidth(100) / .setWidth("100%") / .setWidth(.getWidth()) / .setWidth("auto")
+        // .setWidth(100) / .setWidth("100%") / .setWidth(.getWidth()) /
+        // .setWidth("auto")
 
-        const value = args.pop();
         let unit: keyof typeof methods, asNumber;
 
         if (value === 'auto') {
@@ -52,13 +73,18 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
           asNumber = undefined;
         } else if (value instanceof Value) {
           unit = value.unit as keyof typeof methods;
-          asNumber = value.valueOf();
+
+          if (unit === YGEnums.UNIT_POINT || unit === YGEnums.UNIT_PERCENT) {
+            asNumber = value.valueOf();
+          }
         } else {
           unit =
             typeof value === 'string' && value.endsWith('%')
               ? YGEnums.UNIT_PERCENT
               : YGEnums.UNIT_POINT;
-          asNumber = parseFloat(value);
+
+          asNumber = parseFloat(value as string);
+
           if (!Number.isNaN(value) && Number.isNaN(asNumber)) {
             throw new Error(`Invalid value ${value} for ${fnName}`);
           }
@@ -69,10 +95,10 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
             `Failed to execute "${fnName}": Unsupported unit '${value}'`,
           );
 
-        if (asNumber !== undefined) {
-          return methods[unit].call(this, ...args, asNumber);
+        if (asNumber !== undefined && unit !== YGEnums.UNIT_AUTO) {
+          return methods[unit].call(this, asNumber);
         } else {
-          return methods[unit].call(this, ...args);
+          return methods[unit].call(this);
         }
       },
     );
@@ -155,6 +181,22 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
     ) {
       // Just a small patch to add support for the function default parameters
       return original.call(this, width, height, direction);
+    },
+  );
+
+  patch(
+    Node,
+    'getComputedLayout',
+    function (this: YogaNode, original: Function) {
+      const data = original.call(this);
+      return new Layout(
+        data.left,
+        data.right,
+        data.top,
+        data.bottom,
+        data.width,
+        data.height,
+      );
     },
   );
 
