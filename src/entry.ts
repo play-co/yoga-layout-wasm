@@ -213,6 +213,14 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
     },
   );
 
+  patch(
+    Node,
+    'markDirty',
+    function (this: YogaNode, original: Function, force = false) {
+      original.call(this, force);
+    },
+  );
+
   return {
     Config,
     Node,

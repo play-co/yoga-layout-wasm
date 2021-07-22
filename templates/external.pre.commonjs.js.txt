@@ -1,0 +1,9 @@
+let globalExports;
+
+module.exports = function getEmscripten() {
+  const exports = {};
+  const module = { exports };
+
+  if (globalExports) {
+    return globalExports;
+  }

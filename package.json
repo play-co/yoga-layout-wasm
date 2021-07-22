@@ -9,7 +9,7 @@
   "scripts": {
     "build": "make && tsc && make copy-lib",
     "build:debug": "make debug && tsc && make copy-lib",
-    "build:tests": "make && tsc -p tsconfig.tests.json && make copy-tests",
+    "build:tests": "make tests && tsc -p tsconfig.tests.json && make copy-tests",
     "test:wasm": "TEST_ENTRY=wasm time mocha --expose-gc -r tests/tools.js tests/Facebook.Yoga/**/*.js",
     "test:asm": "TEST_ENTRY=asm time mocha --expose-gc -r tests/tools.js tests/Facebook.Yoga/**/*.js",
     "test": "npm run build:tests && npm run test:wasm && npm run test:asm",
