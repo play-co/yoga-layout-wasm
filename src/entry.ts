@@ -61,11 +61,12 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
     patch(
       Node,
       fnName as any,
-      function (this: YogaNode, _: Function, value: string | number | Value) {
+      function (this: YogaNode, _: Function, ...args: any[]) {
         // We patch all these functions to add support for the following calls:
         // .setWidth(100) / .setWidth("100%") / .setWidth(.getWidth()) /
         // .setWidth("auto")
 
+        const value = args.pop();
         let unit: keyof typeof methods, asNumber;
 
         if (value === 'auto') {
@@ -96,9 +97,9 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
           );
 
         if (asNumber !== undefined && unit !== YGEnums.UNIT_AUTO) {
-          return methods[unit].call(this, asNumber);
+          return methods[unit].call(this, ...args, asNumber);
         } else {
-          return methods[unit].call(this);
+          return methods[unit].call(this, ...args);
         }
       },
     );
@@ -141,6 +142,12 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
         return original.call(
           this,
           MeasureCallback.implement({
+            // __construct: function () {
+            //   this.__parent.__construct.call(this);
+            // },
+            // __destruct: function () {
+            //   this.__parent.__destruct.call(this);
+            // },
             measure: (...args: any[]) => Size.fromJS(measureFunc(...args)),
           }),
         );
@@ -160,6 +167,12 @@ export default function entryCommon(lib: YogaInitModule): YogaStatic {
         return original.call(
           this,
           DirtiedCallback.implement({
+            // __construct: function () {
+            //   this.__parent.__construct.call(this);
+            // },
+            // __destruct: function () {
+            //   this.__parent.__destruct.call(this);
+            // },
             dirtied: dirtiedFunc,
           }),
         );
