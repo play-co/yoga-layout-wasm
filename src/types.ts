@@ -213,8 +213,9 @@ export type YogaOverflow =
   | typeof YGEnums.OVERFLOW_VISIBLE;
 
 export type YogaPositionType =
-  | typeof YGEnums.POSITION_TYPE_ABSOLUTE
-  | typeof YGEnums.POSITION_TYPE_RELATIVE;
+  | typeof YGEnums.POSITION_TYPE_STATIC
+  | typeof YGEnums.POSITION_TYPE_RELATIVE
+  | typeof YGEnums.POSITION_TYPE_ABSOLUTE;
 
 export type YogaExperimentalFeature =
   typeof YGEnums.EXPERIMENTAL_FEATURE_WEB_FLEX_BASIS;

@@ -71,8 +71,6 @@ target.getMeasureCounterMin = function(Yoga) {
 
 exports.mochaHooks = {
   beforeAll(done) {
-    console.warn('BEFORE ALL');
-
     const entries = {
       wasm: './lib/entry-wasm',
       asm: './lib/entry-asm'

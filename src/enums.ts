@@ -76,8 +76,9 @@ export const OVERFLOW_VISIBLE = 0;
 export const OVERFLOW_HIDDEN = 1;
 export const OVERFLOW_SCROLL = 2;
 
-export const POSITION_TYPE_RELATIVE = 0;
-export const POSITION_TYPE_ABSOLUTE = 1;
+export const POSITION_TYPE_STATIC = 0;
+export const POSITION_TYPE_RELATIVE = 1;
+export const POSITION_TYPE_ABSOLUTE = 2;
 
 export const PRINT_OPTIONS_LAYOUT = 1;
 export const PRINT_OPTIONS_STYLE = 2;

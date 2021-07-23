@@ -24,7 +24,7 @@ ARGS_BROWSER=--extern-pre-js templates/external.pre.es6.js.txt
 ARGS_NODE=--extern-pre-js templates/external.pre.commonjs.js.txt
 
 ARGS_PROD=-O3 -g0
-ARGS_DEBUG=-O0 -g3
+ARGS_DEBUG=-O0 -g3 -DDEBUG
 
 ARGS_WASM=-s WASM=1 -o build/yoga.bundle.wasm.js
 ARGS_ASM=-s WASM=0 -o build/yoga.bundle.asm.js
@@ -46,10 +46,10 @@ asm-debug:
 	$(CC) $(ARGS_COMMON) ${ARGS_BROWSER} $(ARGS_DEBUG) $(ARGS_ASM)
 
 wasm-tests:
-	$(CC) $(ARGS_COMMON) ${ARGS_NODE} $(ARGS_PROD) $(ARGS_WASM)
+	$(CC) $(ARGS_COMMON) ${ARGS_NODE} $(ARGS_DEBUG) $(ARGS_WASM)
 
 asm-tests:
-	$(CC) $(ARGS_COMMON) ${ARGS_NODE} $(ARGS_PROD) $(ARGS_ASM)
+	$(CC) $(ARGS_COMMON) ${ARGS_NODE} $(ARGS_DEBUG) $(ARGS_ASM)
 
 clean:
 	rm -rf build 
