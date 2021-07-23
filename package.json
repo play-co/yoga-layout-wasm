@@ -1,6 +1,6 @@
 {
   "name": "@play-co/yoga-layout-wasm",
-  "version": "1.18.4",
+  "version": "1.18.5",
   "description": "yoga-layout webassembly module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
